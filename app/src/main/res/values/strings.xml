@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">MakeMyWay</string>
+    <string name="title_activity_main">Main activity</string>
+    <string name="title_activity_on_boarding">On boarding</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_register">Register</string>
+
+    <!-- General -->
+    <string name="form_fields_invalid">Les champs ne sont pas valides.</string>
+    <string name="form_field_error_mandatory">Ce champ est obligatoire</string>
+    <string name="form_field_error_email_invalid">Cet email n\'est pas valide</string>
+    <string name="form_field_error_password_too_short">Votre mot de passe est trop court</string>
+
+    <!-- OnBoarding -->
+    <string name="on_boarding_go_to_login_btn">Me connecter</string>
+    <string name="on_boarding_go_to_register_btn">M\'inscrire</string>
+
+    <string name="register_first_name_hint">Prénom</string>
+    <string name="register_last_name_hint">Nom</string>
+    <string name="register_email_hint">E-mail</string>
+    <string name="register_password_hint">Mode de passe</string>
+
+    <!-- Login -->
+    <string name="login_failure">L\'email et/ou le password ne sont pas valides</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!-- Pick picture -->
+    <string name="pickPictureIntent">Sélectionner une photo</string>
+    <string name="pickPicturePermissionRefused">Make My Way a besoin d\'accèder à vos photos pour fonctionner</string>
+</resources>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "66589491817",
+    "firebase_url": "https://make-my-way-6594c.firebaseio.com",
+    "project_id": "make-my-way-6594c",
+    "storage_bucket": "make-my-way-6594c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66589491817:android:4d752b1817781260",
+        "android_client_info": {
+          "package_name": "com.mmw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66589491817-tlvf3s4m1q8fdthl5m35vbpeg9fuafii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHDjJO1_KLuGAcvB-sfl9Hk2RJi55p5y0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
