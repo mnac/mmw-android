@@ -123,6 +123,7 @@ class LoginViewModel(context: Application, private val userRepo: UserRepository)
                 credentials.accessToken,
                 credentials.userId)
         App.restClient.setToken(credentials.accessToken)
+        App.currentUserId = credentials.userId
         dataLoading.set(false)
         isAuthenticated.value = true
     }

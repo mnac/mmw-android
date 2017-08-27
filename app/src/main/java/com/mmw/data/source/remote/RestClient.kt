@@ -1,7 +1,5 @@
 package com.mmw.data.source.remote
 
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,7 +36,7 @@ class RestClient(baseUrl: String, token: String) {
     }
 
     fun setToken(token: String) {
-        bearer = if (!token.isEmpty()) "bearer " + token else ""
+        bearer = if (!token.isEmpty()) "Bearer " + token else ""
     }
 
     init {
@@ -49,13 +47,9 @@ class RestClient(baseUrl: String, token: String) {
                 .addInterceptor(getLoggingInterceptor())
                 .build()
 
-        val gson = GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create()
-
         retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .build()

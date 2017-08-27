@@ -22,6 +22,7 @@ class MMWFireBaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         if (!remoteMessage.data.isEmpty()) {
             handlePayload(remoteMessage)
+            generateNotification("Nouvelle notif", "Yeaaaaaar")
         }
 
         if (remoteMessage.notification != null) {

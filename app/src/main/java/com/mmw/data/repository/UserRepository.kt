@@ -19,7 +19,7 @@ class UserRepository private constructor() {
 
     private object Holder { val INSTANCE = UserRepository() }
 
-    private var currentUser: User? = null;
+    private var currentUser: User? = null
 
     companion object  {
         val instance: UserRepository by lazy { Holder.INSTANCE }

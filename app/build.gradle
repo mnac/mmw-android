@@ -59,6 +59,8 @@ dependencies {
 
     compile 'com.drewnoakes:metadata-extractor:2.10.1'
 
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
     compile "com.amazonaws:aws-android-sdk-core:$aws_version"
     compile "com.amazonaws:aws-android-sdk-s3:$aws_version"
 }

@@ -1,6 +1,8 @@
 package com.mmw.data.source.remote.api
 
+import com.mmw.data.model.Follower
 import com.mmw.data.model.OAuthCredentials
+import com.mmw.data.model.Push
 import com.mmw.data.model.User
 import io.reactivex.Observable
 import retrofit2.Response
@@ -22,6 +24,16 @@ interface UserService {
 
     @GET("/user/{userId}")
     fun get(@Path("userId") userId: String): Observable<User>
+
+    @POST("/push")
+    fun savePushToken(@Body push: Push): Observable<Response<Void>>
+
+    @POST("/follow")
+    fun follow(@Body follower: Follower): Observable<Response<Void>>
+
+    @POST("/unfollow")
+    fun unfollow(@Body follower: Follower): Observable<Response<Void>>
+
 
     companion object factory {
         fun create(client: Retrofit): UserService {

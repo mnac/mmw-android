@@ -157,6 +157,7 @@ class RegisterViewModel(context: Application, private val userRepo: UserReposito
                 credentials.accessToken,
                 credentials.userId)
         App.restClient.setToken(credentials.accessToken)
+        App.currentUserId = credentials.userId
         dataLoading.set(false)
         isAuthenticated.value = true
     }

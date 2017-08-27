@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">MakeMyWay</string>
-    <string name="title_activity_main">Main activity</string>
-    <string name="title_activity_on_boarding">On boarding</string>
-    <string name="title_activity_login">Sign in</string>
-    <string name="title_activity_register">Register</string>
+    <string name="app_name">Make My Way</string>
+    <string name="title_activity_main">Make My Way</string>
+    <string name="title_activity_on_boarding">Make My Way</string>
+    <string name="title_activity_login">Connection</string>
+    <string name="title_activity_register">Inscription</string>
+    <string name="title_activity_home">Voyages</string>
+    <string name="title_activity_trip_creation">Nouveau voyage</string>
+    <string name="title_activity_stage_creation">Nouvelle étape</string>
 
     <!-- General -->
     <string name="form_fields_invalid">Les champs ne sont pas valides.</string>
@@ -22,12 +25,48 @@
 
     <!-- Login -->
     <string name="login_failure">L\'email et/ou le password ne sont pas valides</string>
-    <string name="title_activity_home">HomeActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <string name="title_home">Populaire</string>
+    <string name="title_dashboard">Favoris</string>
+    <string name="title_profile">Profile</string>
 
     <!-- Pick picture -->
     <string name="pickPictureIntent">Sélectionner une photo</string>
     <string name="pickPicturePermissionRefused">Make My Way a besoin d\'accèder à vos photos pour fonctionner</string>
+
+    <!-- Trip creation-->
+    <string name="tripCreationIntroTitle">C\'est parti pour une nouvelle aventure</string>
+    <string name="tripCreationTitle">Donner un titre à votre voyage</string>
+    <string name="tripCreationTitleHint">Mon road trip en asie…</string>
+    <string name="tripCreationDescription">Vous pouvez y ajouter une description</string>
+    <string name="tripCreationDescriptionHint">Voyage inoubliable en asie du sud-est</string>
+    <string name="tripCreationBtn">Démarrer mon voyage</string>
+
+    <!-- Stage creation -->
+    <string name="stageCreationAddPicture">Ajouter une photo</string>
+    <string name="stageImageDescription">Lier un photo à l\'étape</string>
+    <string name="stageCreationTitle">Donner un titre à votre étape</string>
+    <string name="stageCreationTitleHint">Temple bouddhiste</string>
+    <string name="stageCreationDescription">Vous pouvez y ajouter une description</string>
+    <string name="stageCreationDescriptionHint">Paix et sérénité régne dans ce temple. Magnifique!</string>
+    <string name="stageSpinner">Comment était votre étape ?</string>
+    <string-array name="stageType">
+        <item>Culturelle</item>
+        <item>Familiale</item>
+        <item>Festive</item>
+        <item>Gourmande</item>
+        <item>Relaxante</item>
+        <item>Sportive</item>
+        <item>Divertissante</item>
+        <item>Autre…</item>
+    </string-array>
+    <string name="stageCreationBtn">Valider cette étape</string>
+    <string name="stageCreationNoTitleError">Choissisez un titre à cette étape</string>
+    <string name="stageCreationTitleTooShort">Ce titre est trop court</string>
+    <string name="stageCreationNoPicture">Une photo est obligatoire pour valider une étape</string>
+    <string name="stageCreationNoTripId">L\'étape n\'est rattachée à aucun voyage</string>
+
+
+    <!-- Trip View -->
+    <string name="tripImageDescription">Image principale du voyage</string>
 </resources>
