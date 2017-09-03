@@ -1,30 +1,29 @@
 package com.mmw.activity.tripCreation
 
-import android.arch.lifecycle.LifecycleRegistry
+import android.app.Activity
 import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.mmw.R
+import com.mmw.activity.BaseActivity
 import com.mmw.activity.stageCreation.StageCreationActivity
-import com.mmw.data.model.Trip
 import com.mmw.data.repository.TripRepository
 import com.mmw.databinding.ActivityTripCreationBinding
 import com.mmw.helper.view.setupSnackBar
 import com.mmw.helper.view.setupSnackBarRes
+import com.mmw.model.Trip
 
-class TripCreationActivity : AppCompatActivity(), LifecycleRegistryOwner {
-
-    // Temporary class until Architecture Components is final. Makes [AppCompatActivity] a
-    // [LifecycleRegistryOwner].
-    private val registry = LifecycleRegistry(this)
-    override fun getLifecycle(): LifecycleRegistry = registry
+class TripCreationActivity : BaseActivity(), LifecycleRegistryOwner {
 
     private lateinit var binding: ActivityTripCreationBinding
+
+    companion object {
+        @JvmStatic val TRIP_CREATION_RESULT_KEY = 10
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +44,16 @@ class TripCreationActivity : AppCompatActivity(), LifecycleRegistryOwner {
         if (trip != null) {
             val intent = Intent(this, StageCreationActivity::class.java)
             intent.putExtra(StageCreationActivity.TRIP_INTENT_KEY, trip)
-            startActivity(intent)
+            startActivityForResult(intent, StageCreationActivity.STAGE_CREATION_RESULT_KEY)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == StageCreationActivity.STAGE_CREATION_RESULT_KEY
+                && resultCode == Activity.RESULT_OK) {
+            setResult(Activity.RESULT_OK)
+            finish()
         }
     }
 

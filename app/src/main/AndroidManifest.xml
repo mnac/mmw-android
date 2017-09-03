@@ -51,7 +51,7 @@
         <activity
             android:name=".activity.home.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".activity.tripCreation.TripCreationActivity"
             android:label="@string/title_activity_trip_creation"
@@ -60,6 +60,14 @@
             android:name=".activity.stageCreation.StageCreationActivity"
             android:label="@string/title_activity_stage_creation"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.tripDetail.TripDetailActivity"
+            android:label="@string/title_activity_trip_detail"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity
+            android:name=".activity.pictureSwipe.PictureSwipeActivity"
+            android:label="@string/title_activity_picture_swipe"
+            android:theme="@style/AppThemeNoActionBar"/>
 
         <service
             android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"

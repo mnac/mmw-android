@@ -2,7 +2,6 @@ package com.mmw.activity.stageCreation
 
 import android.Manifest
 import android.app.Activity
-import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
 import android.content.ComponentName
 import android.content.Intent
@@ -18,12 +17,10 @@ import android.provider.MediaStore
 import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.RatingBar
-import android.widget.Toast
 import com.amazonaws.auth.CognitoCachingCredentialsProvider
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferState
@@ -35,12 +32,13 @@ import com.drew.lang.GeoLocation
 import com.drew.metadata.exif.GpsDirectory
 import com.mmw.AppConstant
 import com.mmw.R
-import com.mmw.data.model.Stage
+import com.mmw.activity.BaseActivity
 import com.mmw.data.repository.TripRepository
 import com.mmw.data.source.remote.Location.ReverseGeocoding
 import com.mmw.databinding.ActivityStageCreationBinding
 import com.mmw.helper.view.setupSnackBar
 import com.mmw.helper.view.setupSnackBarRes
+import com.mmw.model.Stage
 import java.io.File
 import java.io.IOException
 import java.io.RandomAccessFile
@@ -48,42 +46,19 @@ import java.nio.channels.FileChannel
 import java.text.SimpleDateFormat
 import java.util.*
 
-class StageCreationActivity : AppCompatActivity(), LifecycleRegistryOwner,
+class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner,
         ReverseGeocoding.Listener, RatingBar.OnRatingBarChangeListener, AdapterView.OnItemSelectedListener {
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        val types = applicationContext.resources.getStringArray(R.array.stageType)
-        binding.viewModel?.type = types[p2]
-    }
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-        binding.viewModel?.type = null
-    }
-
-    override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
-        binding.viewModel?.rate = Math.round(p1)
-    }
-
-    override fun onAddresses(addresses: List<Address>) {
-        binding.viewModel?.address?.set(addresses[0].getAddressLine(0))
-    }
-
-    override fun onNoAddressFound(e: Throwable) {
-
-    }
 
     companion object {
         @JvmStatic val TRIP_INTENT_KEY = "Trip"
+        @JvmStatic val STAGE_CREATION_RESULT_KEY = 20
+        @JvmStatic val STAGE_ADDING_RESULT_KEY = 30
     }
 
     private val PICTURE_PERMISSION_REQUEST_CODE = 100
     private val PICTURE_REQUEST_CODE = 200
 
     private var cameraUri: Uri? = null
-
-    // Temporary class until Architecture Components is final. Makes [AppCompatActivity] a
-    // [LifecycleRegistryOwner].
-    private val registry = LifecycleRegistry(this)
-    override fun getLifecycle(): LifecycleRegistry = registry
 
     private lateinit var binding: ActivityStageCreationBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,7 +84,8 @@ class StageCreationActivity : AppCompatActivity(), LifecycleRegistryOwner,
     }
 
     private fun goToHomeActivity(stage: Stage) {
-        Toast.makeText(this, "Stage Created", Toast.LENGTH_LONG).show()
+        setResult(Activity.RESULT_OK)
+        finish()
     }
 
     private fun requestPicture() {
@@ -235,7 +211,7 @@ class StageCreationActivity : AppCompatActivity(), LifecycleRegistryOwner,
 
                 val observer = transferUtility.upload(
                         AppConstant.S3_BUCKET_NAME,
-                        AppConstant.S3_TRIP_PICTURE_ROOT + outputFile.name,
+                        AppConstant.S3_TRIP_PICTURES_BUCKET + outputFile.name,
                         outputFile,
                         CannedAccessControlList.PublicRead)
 
@@ -336,6 +312,27 @@ class StageCreationActivity : AppCompatActivity(), LifecycleRegistryOwner,
             }
         }
         return null
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        val types = applicationContext.resources.getStringArray(R.array.stageType)
+        binding.viewModel?.type = types[p2]
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        binding.viewModel?.type = null
+    }
+
+    override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
+        binding.viewModel?.rate = Math.round(p1)
+    }
+
+    override fun onAddresses(addresses: List<Address>) {
+        binding.viewModel?.address?.set(addresses[0].getAddressLine(0))
+    }
+
+    override fun onNoAddressFound(e: Throwable) {
+
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {

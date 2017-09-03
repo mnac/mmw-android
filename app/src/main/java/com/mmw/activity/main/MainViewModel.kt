@@ -4,7 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.databinding.ObservableBoolean
 import com.mmw.App
-import com.mmw.data.model.OAuthCredentials
+import com.mmw.model.OAuthCredentials
 import com.mmw.data.repository.UserRepository
 import io.reactivex.disposables.CompositeDisposable
 
@@ -28,8 +28,8 @@ class MainViewModel(context: Application, private val userRepo: UserRepository)
         dataLoading.set(false)
     }
 
-    private fun handleToken(token: OAuthCredentials) {
-        App.restClient.setToken(token.accessToken)
+    private fun handleToken(credentials: OAuthCredentials) {
+        App.restClient.setHeaders(credentials.accessToken, credentials.userId)
         dataLoading.set(false)
     }
 

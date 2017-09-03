@@ -2,8 +2,8 @@ package com.mmw.data.repository
 
 import com.mmw.App
 import com.mmw.AppConstant
-import com.mmw.data.model.OAuthCredentials
-import com.mmw.data.model.User
+import com.mmw.model.OAuthCredentials
+import com.mmw.model.User
 import com.mmw.data.source.remote.api.UserService
 import io.reactivex.Observable
 import retrofit2.Response

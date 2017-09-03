@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "66589491817",
-    "firebase_url": "https://make-my-way-6594c.firebaseio.com",
-    "project_id": "make-my-way-6594c",
-    "storage_bucket": "make-my-way-6594c.appspot.com"
+    "project_number": "1076078789045",
+    "firebase_url": "https://makemyway-23962.firebaseio.com",
+    "project_id": "makemyway-23962",
+    "storage_bucket": "makemyway-23962.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:66589491817:android:4d752b1817781260",
+        "mobilesdk_app_id": "1:1076078789045:android:4d752b1817781260",
         "android_client_info": {
           "package_name": "com.mmw"
         }
       },
       "oauth_client": [
         {
-          "client_id": "66589491817-tlvf3s4m1q8fdthl5m35vbpeg9fuafii.apps.googleusercontent.com",
+          "client_id": "1076078789045-82u2tnhcucto62a0cn4scvt32t390l4n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mmw",
+            "certificate_hash": "b9e377fd2d61cf4810aaaa0873340bd021471530"
+          }
+        },
+        {
+          "client_id": "1076078789045-h7c03ako1c5uu0pc27k0kcgl0jhpo1jo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAHDjJO1_KLuGAcvB-sfl9Hk2RJi55p5y0"
+          "current_key": "AIzaSyCwFUDgTP9qgXyT5DyAbLU8ZN7EPfZ7H6Q"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1076078789045-h7c03ako1c5uu0pc27k0kcgl0jhpo1jo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

@@ -6,6 +6,7 @@
     <string name="title_activity_register">Inscription</string>
     <string name="title_activity_home">Voyages</string>
     <string name="title_activity_trip_creation">Nouveau voyage</string>
+    <string name="title_activity_trip_detail">Etapes de mon voyage</string>
     <string name="title_activity_stage_creation">Nouvelle étape</string>
 
     <!-- General -->
@@ -69,4 +70,14 @@
 
     <!-- Trip View -->
     <string name="tripImageDescription">Image principale du voyage</string>
+
+    <!-- Trip Detail -->
+    <string name="tripDetailMainPictureDescription">Photo principale du voyage</string>
+
+    <!-- Profile Detail -->
+    <string name="profileImageVwDescription">Photo de profile</string>
+    <string name="title_activity_picture_swipe">PictureSwiperActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

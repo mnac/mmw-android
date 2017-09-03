@@ -1,24 +1,17 @@
 package com.mmw.activity.main
 
-import android.arch.lifecycle.LifecycleRegistry
-import android.arch.lifecycle.LifecycleRegistryOwner
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.mmw.activity.home.HomeActivity
 import com.mmw.R
+import com.mmw.activity.BaseActivity
+import com.mmw.activity.home.HomeActivity
 import com.mmw.activity.onboarding.OnBoardingActivity
 import com.mmw.data.repository.UserRepository
 import com.mmw.data.source.local.Preferences
 import com.mmw.databinding.ActivityMainBinding
 
-class MainActivity: AppCompatActivity(), LifecycleRegistryOwner {
-
-    // Temporary class until Architecture Components is final. Makes [AppCompatActivity] a
-    // [LifecycleRegistryOwner].
-    private val registry = LifecycleRegistry(this)
-    override fun getLifecycle(): LifecycleRegistry = registry
+class MainActivity: BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
 

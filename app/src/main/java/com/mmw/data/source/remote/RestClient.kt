@@ -12,9 +12,10 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Created by Mathias on 24/08/2017.
  *
  */
-class RestClient(baseUrl: String, token: String) {
+class RestClient(baseUrl: String, token: String, userId: String) {
 
     private var bearer: String = ""
+    private var uuid: String = ""
     val retrofit: Retrofit
 
     private fun getLoggingInterceptor(): HttpLoggingInterceptor {
@@ -31,16 +32,21 @@ class RestClient(baseUrl: String, token: String) {
                 requestBuilder.header("Authorization", bearer)
             }
 
+            if (!uuid.isEmpty()) {
+                requestBuilder.header("userId", uuid)
+            }
+
             chain.proceed(requestBuilder.build())
         }
     }
 
-    fun setToken(token: String) {
+    fun setHeaders(token: String, userId: String) {
         bearer = if (!token.isEmpty()) "Bearer " + token else ""
+        uuid = userId
     }
 
     init {
-        setToken(token)
+        setHeaders(token, userId)
 
         val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(getNetworkInterceptor())

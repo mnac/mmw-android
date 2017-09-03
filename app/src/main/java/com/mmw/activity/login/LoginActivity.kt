@@ -1,17 +1,15 @@
 package com.mmw.activity.login
 
-import android.arch.lifecycle.LifecycleRegistry
-import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import com.mmw.R
+import com.mmw.activity.BaseActivity
 import com.mmw.activity.home.HomeActivity
 import com.mmw.data.repository.UserRepository
 import com.mmw.databinding.ActivityLoginBinding
@@ -21,12 +19,7 @@ import com.mmw.helper.view.setupSnackBarRes
 /**
  * A login screen that offers login via email/password.
  */
-class LoginActivity : AppCompatActivity(), LifecycleRegistryOwner {
-
-    // Temporary class until Architecture Components is final. Makes [AppCompatActivity] a
-    // [LifecycleRegistryOwner].
-    private val registry = LifecycleRegistry(this)
-    override fun getLifecycle(): LifecycleRegistry = registry
+class LoginActivity : BaseActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 

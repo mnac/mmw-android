@@ -10,8 +10,8 @@ import android.view.View
 import com.mmw.App
 import com.mmw.AppConstant
 import com.mmw.R
-import com.mmw.data.model.OAuthCredentials
-import com.mmw.data.model.User
+import com.mmw.model.OAuthCredentials
+import com.mmw.model.User
 import com.mmw.data.repository.UserRepository
 import com.mmw.data.source.local.Preferences
 import com.mmw.helper.view.SingleLiveEvent
@@ -122,7 +122,7 @@ class LoginViewModel(context: Application, private val userRepo: UserRepository)
                 getApplication<Application>().applicationContext,
                 credentials.accessToken,
                 credentials.userId)
-        App.restClient.setToken(credentials.accessToken)
+        App.restClient.setHeaders(credentials.accessToken, credentials.userId)
         App.currentUserId = credentials.userId
         dataLoading.set(false)
         isAuthenticated.value = true

@@ -8,10 +8,10 @@ import android.support.annotation.StringRes
 import android.view.View
 import com.mmw.AppConstant
 import com.mmw.R
-import com.mmw.data.model.Stage
-import com.mmw.data.model.Trip
 import com.mmw.data.repository.TripRepository
 import com.mmw.helper.view.SingleLiveEvent
+import com.mmw.model.Stage
+import com.mmw.model.Trip
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -53,7 +53,7 @@ class StageCreationViewModel(context: Application, private val tripRepo: TripRep
 
     fun setPicture(pictureName: String) {
         this.pictureName = pictureName
-        picturePath.set(AppConstant.S3_BASE_URL + pictureName)
+        picturePath.set(AppConstant.S3_TRIP_PICTURE_ROOT + pictureName)
     }
 
     fun setPicture(file: File) {

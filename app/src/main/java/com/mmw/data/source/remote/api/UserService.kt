@@ -1,9 +1,9 @@
 package com.mmw.data.source.remote.api
 
-import com.mmw.data.model.Follower
-import com.mmw.data.model.OAuthCredentials
-import com.mmw.data.model.Push
-import com.mmw.data.model.User
+import com.mmw.model.Follower
+import com.mmw.model.OAuthCredentials
+import com.mmw.model.Push
+import com.mmw.model.User
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.Retrofit

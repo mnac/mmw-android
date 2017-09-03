@@ -8,7 +8,7 @@ import android.support.annotation.StringRes
 import android.view.View
 import com.mmw.App
 import com.mmw.R
-import com.mmw.data.model.Trip
+import com.mmw.model.Trip
 import com.mmw.data.repository.TripRepository
 import com.mmw.helper.view.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers

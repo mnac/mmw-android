@@ -1,11 +1,8 @@
 package com.mmw.data.repository
 
 import com.mmw.App
-import com.mmw.data.model.Stage
-import com.mmw.data.model.StageResult
-import com.mmw.data.model.Trip
-import com.mmw.data.model.TripResult
 import com.mmw.data.source.remote.api.TripService
+import com.mmw.model.*
 import io.reactivex.Observable
 
 /**
@@ -47,5 +44,22 @@ class TripRepository private constructor() {
 
     fun getLastStageState() : Stage? {
         return currentStage
+    }
+
+    fun getTimeline(): Observable<Timeline> {
+        return tripService.getTimeline()
+    }
+
+    fun getStages(tripId: String): Observable<StagesResult> {
+        return tripService.getTripStages(tripId)
+    }
+
+    fun getUserProfile(): Observable<UserProfile> {
+        return tripService.getUserProfile(null, null, null)
+    }
+
+
+    fun getUserStages(tripId: String): Observable<StagesResult> {
+        return tripService.getTripStages(tripId)
     }
 }

@@ -1,29 +1,22 @@
 package com.mmw.activity.register
 
-import android.arch.lifecycle.LifecycleRegistry
-import android.arch.lifecycle.LifecycleRegistryOwner
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
-import com.mmw.activity.home.HomeActivity
 import com.mmw.R
+import com.mmw.activity.BaseActivity
+import com.mmw.activity.home.HomeActivity
 import com.mmw.data.repository.UserRepository
 import com.mmw.databinding.ActivityRegisterBinding
 import com.mmw.helper.view.setupSnackBar
 import com.mmw.helper.view.setupSnackBarRes
 
-class RegisterActivity : AppCompatActivity(), LifecycleRegistryOwner {
-
-    // Temporary class until Architecture Components is final. Makes [AppCompatActivity] a
-    // [LifecycleRegistryOwner].
-    private val registry = LifecycleRegistry(this)
-    override fun getLifecycle(): LifecycleRegistry = registry
+class RegisterActivity : BaseActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
 
