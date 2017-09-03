@@ -6,11 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.support.v4.app.NotificationCompat
-import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.mmw.R
-import com.mmw.activity.home.HomeActivity
+import com.mmw.activity.tripDetail.TripDetailActivity
 
 /**
  * Created by Mathias on 25/08/2017.
@@ -21,31 +20,23 @@ class MMWFireBaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         if (!remoteMessage.data.isEmpty()) {
-            handlePayload(remoteMessage)
-            generateNotification("Nouvelle notif", "Yeaaaaaar")
-        }
-
-        if (remoteMessage.notification != null) {
-            Log.d("Messaging service: ",
-                    "Message Notification Body: " + remoteMessage.notification.body)
-
-            generateNotification(remoteMessage.notification.title, remoteMessage.notification.body)
+            val tripId = remoteMessage.data["tripId"]
+            val title = remoteMessage.data["title"]
+            val description = remoteMessage.data["description"]
+            generateNotification(title, description, tripId)
         }
     }
 
-    private fun handlePayload(remoteMessage: RemoteMessage) {
-
-    }
-
-    private fun generateNotification(title: String?, messageBody: String?) {
-        val intent = Intent(this, HomeActivity::class.java)
+    private fun generateNotification(title: String?, messageBody: String?, id: String?) {
+        val intent = Intent(this, TripDetailActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.putExtra(TripDetailActivity.TRIP_ID_KEY, id)
         val pendingIntent = PendingIntent.getActivity(
                 this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
 
-        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, "Client id")
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.drawable.ic_following_24dp)
                 .setContentTitle(title)
                 .setContentText(messageBody)
                 .setAutoCancel(true)
