@@ -18,6 +18,18 @@ class Preferences {
             saveUserId(context, id)
         }
 
+        fun removeOauthCredentials(context: Context) {
+            PreferenceManager.getDefaultSharedPreferences(context)
+                    .edit()
+                    .remove(TOKEN_KEY)
+                    .apply()
+
+            PreferenceManager.getDefaultSharedPreferences(context)
+                    .edit()
+                    .remove(USER_ID)
+                    .apply()
+        }
+
         fun getToken(context: Context) : String {
             return PreferenceManager.getDefaultSharedPreferences(context)
                     .getString(TOKEN_KEY, "")
