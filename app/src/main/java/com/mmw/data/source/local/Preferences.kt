@@ -9,6 +9,7 @@ import android.preference.PreferenceManager
  */
 class Preferences {
     companion object {
+        private const val PUSH_TOKEN_KEY = "token_push"
         private const val TOKEN_KEY = "token"
         private const val USER_ID = "id"
 
@@ -44,6 +45,23 @@ class Preferences {
         fun getUserId(context: Context) : String {
             return PreferenceManager.getDefaultSharedPreferences(context)
                     .getString(USER_ID, "")
+        }
+
+        fun savePushToken(context: Context, token: String?) {
+            PreferenceManager.getDefaultSharedPreferences(context)
+                    .edit()
+                    .putString(PUSH_TOKEN_KEY, token)
+                    .apply()
+        }
+
+        fun hasPushToken(context: Context): Boolean {
+            return PreferenceManager.getDefaultSharedPreferences(context)
+                    .contains(PUSH_TOKEN_KEY)
+        }
+
+        fun getPushToken(context: Context): String {
+            return PreferenceManager.getDefaultSharedPreferences(context)
+                    .getString(PUSH_TOKEN_KEY, "")
         }
     }
 }

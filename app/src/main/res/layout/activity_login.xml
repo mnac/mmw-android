@@ -86,8 +86,9 @@
                 android:layout_marginTop="32dp"
                 android:onClick="@{viewModel::onClickLogin}"
                 android:text="@string/on_boarding_go_to_register_btn"
+                android:background="@drawable/btn_plain"
                 android:textAllCaps="false"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordTxtInputLyt" />

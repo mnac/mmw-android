@@ -158,8 +158,10 @@ class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner,
 
             if (data?.data != null) {
                 val path = getLocalPath(data.data)
-                Log.i("Transfert Local path", path)
-                file = File(path)
+                if (path != null && !path.isEmpty()) {
+                    Log.i("Transfert Local path", path)
+                    file = File(path)
+                }
             } else if (currentUri != null) {
                 file = File(currentUri.path)
             }

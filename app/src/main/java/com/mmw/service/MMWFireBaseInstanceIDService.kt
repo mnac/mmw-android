@@ -3,6 +3,7 @@ package com.mmw.service
 import android.util.Log
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.FirebaseInstanceIdService
+import com.mmw.data.source.local.Preferences
 
 
 /**
@@ -41,6 +42,7 @@ class MMWFireBaseInstanceIDService : FirebaseInstanceIdService() {
     private fun sendRegistrationToServer(token: String?) {
         // TODO: Implement this method to send token to your app server.
         Log.i("Token: ", token)
+        Preferences.savePushToken(applicationContext, token)
     }
 
     companion object {

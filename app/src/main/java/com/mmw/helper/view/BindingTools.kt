@@ -87,3 +87,11 @@ fun loadTrips(view: RecyclerView, trips: List<Trip>) {
 fun loadStages(view: RecyclerView, stages: List<Stage>) {
     (view.adapter as StagesAdapter).setList(stages)
 }
+
+
+@BindingAdapter("bind:src")
+fun loadDrawableSrc(view: ImageView, src: Int) {
+    view.setImageResource(src)
+}
+
+

@@ -6,14 +6,23 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
+import android.util.Log
 import com.mmw.R
 import com.mmw.activity.BaseActivity
 import com.mmw.activity.home.profile.ProfileFragment
 import com.mmw.activity.home.timeline.TimelineFragment
 import com.mmw.activity.tripCreation.TripCreationActivity
+import com.mmw.data.repository.UserRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 
 
 class HomeActivity : BaseActivity() {
+
+
+    private val disposable = CompositeDisposable()
 
     private var timelineFragment: TimelineFragment? = null
     private var favoritesFragment: TimelineFragment? = null
@@ -53,6 +62,23 @@ class HomeActivity : BaseActivity() {
         profileFragment = ProfileFragment.newInstance()
         selectFragment(0)
 
+
+        val observable = UserRepository.instance.savePushToken(applicationContext)
+
+        if (observable != null) {
+            disposable.add(observable.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                        { Log.e("Push token: ", "Push token not sent") },
+                        {},
+                        { Log.e("Push token: ", "Push token sent sucessfully") }
+                ))
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposable.clear()
     }
 
     private fun selectFragment(position: Int) {

@@ -139,7 +139,8 @@
                 android:onClick="@{viewModel::onClickRegister}"
                 android:text="@string/on_boarding_go_to_register_btn"
                 android:textAllCaps="false"
-                android:textColor="@color/colorAccent"
+                android:textColor="@android:color/white"
+                android:background="@drawable/btn_plain"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordTxtInputLyt" />

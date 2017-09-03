@@ -4,6 +4,7 @@ import com.mmw.App
 import com.mmw.data.source.remote.api.TripService
 import com.mmw.model.*
 import io.reactivex.Observable
+import retrofit2.Response
 
 /**
  * Created by Mathias on 26/08/2017.
@@ -50,6 +51,10 @@ class TripRepository private constructor() {
         return tripService.getTimeline()
     }
 
+    fun getTrip(tripId: String): Observable<Trip> {
+        return tripService.getTrip(tripId)
+    }
+
     fun getStages(tripId: String): Observable<StagesResult> {
         return tripService.getTripStages(tripId)
     }
@@ -58,8 +63,11 @@ class TripRepository private constructor() {
         return tripService.getUserProfile(null, null, null)
     }
 
+    fun doFollow(tripId: String): Observable<Response<Void>> {
+        return tripService.doFollow(tripId)
+    }
 
-    fun getUserStages(tripId: String): Observable<StagesResult> {
-        return tripService.getTripStages(tripId)
+    fun unFollow(tripId: String): Observable<Response<Void>> {
+        return tripService.unFollow(tripId)
     }
 }

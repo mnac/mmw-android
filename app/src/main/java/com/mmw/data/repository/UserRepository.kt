@@ -1,10 +1,12 @@
 package com.mmw.data.repository
 
+import android.content.Context
 import com.mmw.App
 import com.mmw.AppConstant
-import com.mmw.model.OAuthCredentials
-import com.mmw.model.User
 import com.mmw.data.source.remote.api.UserService
+import com.mmw.model.OAuthCredentials
+import com.mmw.model.Push
+import com.mmw.model.User
 import io.reactivex.Observable
 import retrofit2.Response
 
@@ -36,6 +38,19 @@ class UserRepository private constructor() {
 
     fun get(userId: String): Observable<User> {
         return userService.get(userId)
+    }
+
+    fun savePushToken(context: Context): Observable<Response<Void>>? {
+        val preferences = com.mmw.data.source.local.Preferences
+        val uuid: String? = preferences.getUserId(context)
+        val token: String? = preferences.getPushToken(context)
+
+        if (uuid != null && !uuid.isEmpty() && token != null && !token.isEmpty()) {
+            val push = Push(uuid, token)
+            return userService.savePushToken(push)
+        } else {
+            return null
+        }
     }
 
     fun saveUserState(user: User) {

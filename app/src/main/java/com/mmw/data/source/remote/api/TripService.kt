@@ -2,6 +2,7 @@ package com.mmw.data.source.remote.api
 
 import com.mmw.model.*
 import io.reactivex.Observable
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.*
 
@@ -31,6 +32,17 @@ interface TripService {
 
     @GET("/timeline")
     fun getTimeline(): Observable<Timeline>
+
+    @GET("/trip/{uuid}")
+    fun getTrip(@Path("uuid") uuid: String): Observable<Trip>
+
+
+    @POST("/trip/follow")
+    fun doFollow(@Query("tripId") tripId: String?): Observable<Response<Void>>
+
+    @POST("/trip/unfollow")
+    fun unFollow(@Query("tripId") tripId: String?): Observable<Response<Void>>
+
 
     companion object factory {
         fun create(client: Retrofit): TripService {
