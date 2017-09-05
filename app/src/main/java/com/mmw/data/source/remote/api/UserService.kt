@@ -1,9 +1,6 @@
 package com.mmw.data.source.remote.api
 
-import com.mmw.model.Follower
-import com.mmw.model.OAuthCredentials
-import com.mmw.model.Push
-import com.mmw.model.User
+import com.mmw.model.*
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -19,7 +16,7 @@ interface UserService {
     fun register(@Body user: User): Observable<Response<Void>>
 
     @PUT("/user")
-    fun update(@Body user: User): Observable<Response<Void>>
+    fun update(@Body user: UserUpdate): Observable<Response<Void>>
 
     @POST("/connect")
     fun connect(@Header("Authorization") basicToken: String, @Body body: HashMap<String, String>):

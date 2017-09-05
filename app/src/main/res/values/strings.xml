@@ -8,6 +8,7 @@
     <string name="title_activity_trip_creation">Nouveau voyage</string>
     <string name="title_activity_trip_detail">Etapes de mon voyage</string>
     <string name="title_activity_stage_creation">Nouvelle étape</string>
+    <string name="title_activity_profile_update">Mon profil</string>
 
     <!-- General -->
     <string name="form_fields_invalid">Les champs ne sont pas valides.</string>

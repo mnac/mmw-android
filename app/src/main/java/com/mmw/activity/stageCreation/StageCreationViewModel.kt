@@ -53,7 +53,7 @@ class StageCreationViewModel(context: Application, private val tripRepo: TripRep
 
     fun setPicture(pictureName: String) {
         this.pictureName = pictureName
-        picturePath.set(AppConstant.S3_TRIP_PICTURE_ROOT + pictureName)
+        picturePath.set(AppConstant.S3_PROFILE_PICTURE_ROOT + pictureName)
     }
 
     fun setPicture(file: File) {

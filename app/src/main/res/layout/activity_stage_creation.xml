@@ -50,7 +50,7 @@
                 android:background="@color/colorBlack24"
                 android:contentDescription="@string/stageImageDescription"
                 android:onClick="@{activity::onClickPicture}"
-                bind:imageUrl="@{viewModel.picturePath}"/>
+                bind:imageUrl="@{viewModel.picturePath}" />
 
             <TextView
                 android:id="@+id/addressTxtVw"

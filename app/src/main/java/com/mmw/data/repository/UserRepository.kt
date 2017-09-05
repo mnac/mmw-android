@@ -7,6 +7,7 @@ import com.mmw.data.source.remote.api.UserService
 import com.mmw.model.OAuthCredentials
 import com.mmw.model.Push
 import com.mmw.model.User
+import com.mmw.model.UserUpdate
 import io.reactivex.Observable
 import retrofit2.Response
 
@@ -37,7 +38,7 @@ class UserRepository private constructor() {
     }
 
     fun update(user: User): Observable<Response<Void>> {
-        return userService.update(user)
+        return userService.update(UserUpdate(user))
     }
 
     fun get(userId: String): Observable<User> {
