@@ -55,6 +55,10 @@ class TripRepository private constructor() {
         return tripService.getTrip(tripId)
     }
 
+    fun searchTrips(keyword: String): Observable<ArrayList<Trip>> {
+        return tripService.search(keyword)
+    }
+
     fun getStages(tripId: String): Observable<StagesResult> {
         return tripService.getTripStages(tripId)
     }

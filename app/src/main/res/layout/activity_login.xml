@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.mmw.activity.login.LoginViewModel" />
+            type="com.mmw.activity.userLogin.LoginViewModel" />
 
     </data>
 
@@ -85,7 +85,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:onClick="@{viewModel::onClickLogin}"
-                android:text="@string/on_boarding_go_to_register_btn"
+                android:text="@string/on_boarding_go_to_login_btn"
                 android:background="@drawable/btn_plain"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"

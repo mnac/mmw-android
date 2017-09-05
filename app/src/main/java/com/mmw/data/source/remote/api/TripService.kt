@@ -43,6 +43,9 @@ interface TripService {
     @POST("/trip/unfollow")
     fun unFollow(@Query("tripId") tripId: String?): Observable<Response<Void>>
 
+    @POST("/search/{keyword}")
+    fun search(@Path("keyword") keyword: String?): Observable<ArrayList<Trip>>
+
 
     companion object factory {
         fun create(client: Retrofit): TripService {

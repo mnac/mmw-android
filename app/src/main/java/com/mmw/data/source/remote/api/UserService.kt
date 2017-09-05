@@ -18,6 +18,9 @@ interface UserService {
     @POST("/user/register")
     fun register(@Body user: User): Observable<Response<Void>>
 
+    @PUT("/user")
+    fun update(@Body user: User): Observable<Response<Void>>
+
     @POST("/connect")
     fun connect(@Header("Authorization") basicToken: String, @Body body: HashMap<String, String>):
             Observable<OAuthCredentials>

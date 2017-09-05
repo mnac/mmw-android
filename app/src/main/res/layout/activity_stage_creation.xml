@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
+            android:paddingBottom="48dp"
             tools:context="com.mmw.activity.stageCreation.StageCreationActivity">
 
             <TextView
@@ -208,7 +209,8 @@
                 android:onClick="@{viewModel::onClickValidate}"
                 android:text="@string/stageCreationBtn"
                 android:textAllCaps="false"
-                android:textColor="@color/colorAccent"
+                android:background="@drawable/btn_plain"
+                android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

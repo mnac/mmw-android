@@ -79,4 +79,10 @@
     <string name="settingsImageVwDescription">Edit profile</string>
     <string name="title_activity_picture_swipe">PictureSwiperActivity</string>
 
+    <!-- Profile Update -->
+    <string name="profileUpdateBtn">Mettre à jour mon profile</string>
+    <string name="profilePseudoHint">Pseudo</string>
+    <string name="profileDescriptionHint">Description</string>
+    <string name="profileContentDescription">Mettre à jour ma photo de profile</string>
+
 </resources>

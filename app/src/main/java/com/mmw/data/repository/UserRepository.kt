@@ -36,6 +36,10 @@ class UserRepository private constructor() {
                 AppConstant.CONNECTION_BODY_KEY to AppConstant.CONNECTION_BODY_VALUE))
     }
 
+    fun update(user: User): Observable<Response<Void>> {
+        return userService.update(user)
+    }
+
     fun get(userId: String): Observable<User> {
         return userService.get(userId)
     }

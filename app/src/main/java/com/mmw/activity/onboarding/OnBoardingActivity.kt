@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.View
 import com.mmw.R
 import com.mmw.activity.BaseActivity
-import com.mmw.activity.login.LoginActivity
-import com.mmw.activity.register.RegisterActivity
+import com.mmw.activity.userLogin.LoginActivity
+import com.mmw.activity.userRegister.RegisterActivity
 import com.mmw.databinding.ActivityOnBoardingBinding
 
 class OnBoardingActivity : BaseActivity() {

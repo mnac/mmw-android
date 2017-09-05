@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.mmw.activity.register.RegisterViewModel" />
+            type="com.mmw.activity.userRegister.RegisterViewModel" />
 
     </data>
 
