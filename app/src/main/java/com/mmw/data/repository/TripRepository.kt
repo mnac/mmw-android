@@ -16,8 +16,8 @@ class TripRepository private constructor() {
 
     private object Holder { val INSTANCE = TripRepository() }
 
-    private lateinit var currentTrip: Trip
-    private lateinit var currentStage: Stage
+    private var currentTrip: Trip? = null
+    private var currentStage: Stage? = null
 
     companion object  {
         val instance: TripRepository by lazy { Holder.INSTANCE }
@@ -55,7 +55,11 @@ class TripRepository private constructor() {
         return tripService.getTrip(tripId)
     }
 
-    fun searchTrips(keyword: String): Observable<ArrayList<Trip>> {
+    fun getFavoriteTrips(): Observable<Trips> {
+        return tripService.getFavoriteTrips()
+    }
+
+    fun searchTrips(keyword: String): Observable<Trips> {
         return tripService.search(keyword)
     }
 

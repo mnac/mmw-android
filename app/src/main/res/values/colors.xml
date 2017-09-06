@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorBlack24">#24000000</color>
+    <color name="backgroundSearch">#33ffffff</color>
 </resources>

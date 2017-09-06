@@ -10,6 +10,7 @@ import android.util.Log
 import com.mmw.R
 import com.mmw.activity.BaseActivity
 import com.mmw.activity.home.profile.ProfileFragment
+import com.mmw.activity.home.search.SearchFragment
 import com.mmw.activity.home.timeline.TimelineFragment
 import com.mmw.activity.tripCreation.TripCreationActivity
 import com.mmw.data.repository.UserRepository
@@ -21,11 +22,10 @@ import io.reactivex.schedulers.Schedulers
 
 class HomeActivity : BaseActivity() {
 
-
     private val disposable = CompositeDisposable()
 
     private var timelineFragment: TimelineFragment? = null
-    private var favoritesFragment: TimelineFragment? = null
+    private var favoritesFragment: SearchFragment? = null
     private var profileFragment: ProfileFragment? = null
 
     private val mOnNavigationItemSelectedListener =
@@ -58,7 +58,7 @@ class HomeActivity : BaseActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         timelineFragment = TimelineFragment.newInstance()
-        favoritesFragment = TimelineFragment.newInstance()
+        favoritesFragment = SearchFragment.newInstance()
         profileFragment = ProfileFragment.newInstance()
         selectFragment(0)
 

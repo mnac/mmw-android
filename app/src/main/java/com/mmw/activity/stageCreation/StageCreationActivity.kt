@@ -16,6 +16,7 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferState
 import com.drew.imaging.ImageMetadataReader
 import com.drew.lang.GeoLocation
+import com.drew.metadata.exif.ExifIFD0Directory
 import com.drew.metadata.exif.GpsDirectory
 import com.mmw.AppConstant
 import com.mmw.R
@@ -83,26 +84,35 @@ class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner, TransferLi
         val metadata = ImageMetadataReader.readMetadata(file)
 
         // Date
-        val date = metadata?.getFirstDirectoryOfType(GpsDirectory::class.java)!!.gpsDate
-        val viewFormatDate = SimpleDateFormat("'le' d MMMM yyyy 'à' HH:mm", Locale.FRENCH)
-        binding.viewModel?.formattedDate?.set(viewFormatDate.format(date))
+        val exifDirectory = metadata?.getFirstDirectoryOfType(ExifIFD0Directory::class.java)
+        if (exifDirectory != null) {
+            val date = exifDirectory.getDate (ExifIFD0Directory.TAG_DATETIME)
+            if (date != null) {
+                val viewFormatDate = SimpleDateFormat("'le' d MMMM yyyy 'à' HH:mm", Locale.FRENCH)
+                binding.viewModel?.formattedDate?.set(viewFormatDate.format(date))
 
-        val formatSaveDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ", Locale.FRENCH)
-        binding.viewModel?.date = formatSaveDate.format(date)
+                val formatSaveDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ", Locale.FRENCH)
+                binding.viewModel?.date = formatSaveDate.format(date)
+            }
+        }
 
         // position
         val gpsDirectory = metadata.getFirstDirectoryOfType(GpsDirectory::class.java)
-        val geoLocation: GeoLocation = gpsDirectory!!.geoLocation
+        if (gpsDirectory != null) {
+            val geoLocation: GeoLocation? = gpsDirectory.geoLocation
 
-        val pictureLocation = Location("picture")
-        pictureLocation.latitude = geoLocation.latitude
-        pictureLocation.longitude = geoLocation.longitude
+            if (geoLocation != null) {
+                val pictureLocation = Location("picture")
+                pictureLocation.latitude = geoLocation.latitude
+                pictureLocation.longitude = geoLocation.longitude
 
-        val reverseGeoCoding = ReverseGeocoding(this, this)
-        reverseGeoCoding.getAddressFromLocation(pictureLocation)
+                val reverseGeoCoding = ReverseGeocoding(this, this)
+                reverseGeoCoding.getAddressFromLocation(pictureLocation)
 
-        binding.viewModel?.latitude = pictureLocation.latitude
-        binding.viewModel?.longitude = pictureLocation.longitude
+                binding.viewModel?.latitude = pictureLocation.latitude
+                binding.viewModel?.longitude = pictureLocation.longitude
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -115,7 +125,7 @@ class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner, TransferLi
             binding.viewModel?.setPicture(tempPictureFile!!)
             readMetaData(tempPictureFile!!)
 
-            PictureManager.uploadFile(this, tempPictureFile, AppConstant.S3_PROFILE_PICTURES_BUCKET, this)
+            PictureManager.uploadFile(this, tempPictureFile, AppConstant.S3_TRIP_PICTURES_BUCKET, this)
         }
     }
 

@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:refreshing="@{viewModel.dataLoading}"
+        app:onRefreshListener="@{() -> viewModel.onRefresh()}"
         tools:context="com.mmw.activity.home.timeline.TimelineFragment">
 
         <android.support.v7.widget.RecyclerView

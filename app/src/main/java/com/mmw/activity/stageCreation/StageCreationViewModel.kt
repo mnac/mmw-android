@@ -53,7 +53,7 @@ class StageCreationViewModel(context: Application, private val tripRepo: TripRep
 
     fun setPicture(pictureName: String) {
         this.pictureName = pictureName
-        picturePath.set(AppConstant.S3_PROFILE_PICTURE_ROOT + pictureName)
+        picturePath.set(AppConstant.S3_TRIP_PICTURE_ROOT + pictureName)
     }
 
     fun setPicture(file: File) {
@@ -148,12 +148,14 @@ class StageCreationViewModel(context: Application, private val tripRepo: TripRep
         address.set(stage?.address)
         date = stage?.date
 
-        val formatSaveDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ", Locale.FRENCH)
-        val formatDate = formatSaveDate.parse(date)
+        if (date != null) {
+            val formatSaveDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ", Locale.FRENCH)
+            val formatDate = formatSaveDate.parse(date)
+            val viewFormatDate = SimpleDateFormat("'le' d MMMM yyyy 'à' HH:mm", Locale.FRENCH)
+            val formatDateForView = viewFormatDate.format(formatDate)
+            formattedDate.set(formatDateForView)
+        }
 
-        val viewFormatDate = SimpleDateFormat("'le' d MMMM yyyy 'à' HH:mm", Locale.FRENCH)
-        val formatDateForView = viewFormatDate.format(formatDate)
-        formattedDate.set(formatDateForView)
         pictureName = stage?.pictureUrl
     }
 

@@ -43,8 +43,11 @@ interface TripService {
     @POST("/trip/unfollow")
     fun unFollow(@Query("tripId") tripId: String?): Observable<Response<Void>>
 
+    @GET("/favorites")
+    fun getFavoriteTrips(): Observable<Trips>
+
     @POST("/search/{keyword}")
-    fun search(@Path("keyword") keyword: String?): Observable<ArrayList<Trip>>
+    fun search(@Path("keyword") keyword: String?): Observable<Trips>
 
 
     companion object factory {
