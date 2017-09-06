@@ -37,7 +37,7 @@
     <string name="pickPicturePermissionRefused">Make My Way a besoin d\'accèder à vos photos pour fonctionner</string>
 
     <!-- Trip creation-->
-    <string name="tripCreationIntroTitle">C\'est parti pour une nouvelle aventure</string>
+    <string name="tripCreationIntroTitle">Nouveau voyage</string>
     <string name="tripCreationTitle">Donner un titre à votre voyage</string>
     <string name="tripCreationTitleHint">Mon road trip en asie…</string>
     <string name="tripCreationDescription">Vous pouvez y ajouter une description</string>
@@ -50,7 +50,7 @@
     <string name="stageCreationTitle">Donner un titre à votre étape</string>
     <string name="stageCreationTitleHint">Temple bouddhiste</string>
     <string name="stageCreationDescription">Vous pouvez y ajouter une description</string>
-    <string name="stageCreationDescriptionHint">Paix et sérénité régne dans ce temple. Magnifique!</string>
+    <string name="stageCreationDescriptionHint">Paix et sérénité règne dans ce temple. Magnifique!</string>
     <string name="stageSpinner">Comment était votre étape ?</string>
     <string-array name="stageType">
         <item>Culturelle</item>

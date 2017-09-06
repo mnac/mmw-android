@@ -30,18 +30,29 @@
             android:paddingBottom="48dp"
             tools:context="com.mmw.activity.stageCreation.StageCreationActivity">
 
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_camera_enhance_120dp"
+                app:layout_constraintBottom_toTopOf="@+id/addressTxtVw"
+                app:layout_constraintEnd_toEndOf="@+id/stageImgVw"
+                app:layout_constraintStart_toStartOf="@+id/stageImgVw" />
+
             <TextView
                 android:id="@+id/pictureTxtVw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
                 android:text="@string/stageCreationAddPicture"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toBottomOf="@+id/dateTxtVw"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
                 android:id="@+id/stageImgVw"
@@ -146,12 +157,12 @@
                 android:background="@android:color/white"
                 android:gravity="top"
                 android:hint="@string/stageCreationDescriptionHint"
-                android:inputType="textCapSentences"
-                android:minHeight="88dp"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
+                android:inputType="textCapSentences|textMultiLine"
+                android:minLines="3"
                 android:text="@={viewModel.comment}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
