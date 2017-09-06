@@ -4,6 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
+import android.databinding.ObservableInt
 import android.support.annotation.StringRes
 import android.view.View
 import com.mmw.AppConstant
@@ -34,6 +35,7 @@ class StageCreationViewModel(context: Application, private val tripRepo: TripRep
     var address = ObservableField<String>("")
     val formattedDate = ObservableField<String>("")
 
+    var progress = ObservableInt(0)
     val picturePath = ObservableField<String>("")
 
     val title = ObservableField<String>("")

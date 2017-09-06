@@ -24,6 +24,7 @@ import com.mmw.activity.BaseActivity
 import com.mmw.data.repository.TripRepository
 import com.mmw.data.source.remote.Location.ReverseGeocoding
 import com.mmw.databinding.ActivityStageCreationBinding
+import com.mmw.helper.Convert
 import com.mmw.helper.picture.PictureManager
 import com.mmw.helper.view.setupSnackBar
 import com.mmw.helper.view.setupSnackBarRes
@@ -45,30 +46,32 @@ class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner, TransferLi
     private var cameraUri: Uri? = null
     private var tempPictureFile: File? = null
 
-    private lateinit var binding: ActivityStageCreationBinding
+    private var binding: ActivityStageCreationBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_stage_creation)
-        binding.viewModel = StageCreationViewModel(application, TripRepository.instance)
-        binding.activity = this
+        if (binding == null) {
+            binding = DataBindingUtil.setContentView(this, R.layout.activity_stage_creation)
+            binding?.viewModel = StageCreationViewModel(application, TripRepository.instance)
+            binding?.activity = this
 
-        binding.viewModel?.trip = intent.getParcelableExtra(TRIP_INTENT_KEY)
+            binding?.viewModel?.trip = intent.getParcelableExtra(TRIP_INTENT_KEY)
 
-        binding.viewModel?.createdStage?.observe(this, android.arch.lifecycle.Observer {
-            if (it != null) goToHomeActivity(it)
-        })
+            binding?.viewModel?.createdStage?.observe(this, android.arch.lifecycle.Observer {
+                if (it != null) goToHomeActivity(it)
+            })
 
-        val content = this.findViewById<View>(android.R.id.content)
-        content.setupSnackBar(this, binding.viewModel?.snackBarMessage, Snackbar.LENGTH_LONG)
-        content.setupSnackBarRes(this, binding.viewModel?.snackBarMessageRes, Snackbar.LENGTH_LONG)
+            val content = this.findViewById<View>(android.R.id.content)
+            content.setupSnackBar(this, binding!!.viewModel?.snackBarMessage, Snackbar.LENGTH_LONG)
+            content.setupSnackBarRes(this, binding!!.viewModel?.snackBarMessageRes, Snackbar.LENGTH_LONG)
+        }
     }
 
-    fun onClickPicture(view: View) {
+    fun onClickPicture(@Suppress("UNUSED_PARAMETER") view: View) {
         cameraUri = PictureManager.requestPicture(this)
     }
 
-    private fun goToHomeActivity(stage: Stage) {
+    private fun goToHomeActivity(@Suppress("UNUSED_PARAMETER") stage: Stage) {
         setResult(Activity.RESULT_OK)
         finish()
     }
@@ -89,10 +92,10 @@ class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner, TransferLi
             val date = exifDirectory.getDate (ExifIFD0Directory.TAG_DATETIME)
             if (date != null) {
                 val viewFormatDate = SimpleDateFormat("'le' d MMMM yyyy 'à' HH:mm", Locale.FRENCH)
-                binding.viewModel?.formattedDate?.set(viewFormatDate.format(date))
+                binding?.viewModel?.formattedDate?.set(viewFormatDate.format(date))
 
                 val formatSaveDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ", Locale.FRENCH)
-                binding.viewModel?.date = formatSaveDate.format(date)
+                binding?.viewModel?.date = formatSaveDate.format(date)
             }
         }
 
@@ -109,8 +112,8 @@ class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner, TransferLi
                 val reverseGeoCoding = ReverseGeocoding(this, this)
                 reverseGeoCoding.getAddressFromLocation(pictureLocation)
 
-                binding.viewModel?.latitude = pictureLocation.latitude
-                binding.viewModel?.longitude = pictureLocation.longitude
+                binding?.viewModel?.latitude = pictureLocation.latitude
+                binding?.viewModel?.longitude = pictureLocation.longitude
             }
         }
     }
@@ -122,7 +125,7 @@ class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner, TransferLi
 
         if (tempPictureFile != null) {
 
-            binding.viewModel?.setPicture(tempPictureFile!!)
+            binding?.viewModel?.setPicture(tempPictureFile!!)
             readMetaData(tempPictureFile!!)
 
             PictureManager.uploadFile(this, tempPictureFile, AppConstant.S3_TRIP_PICTURES_BUCKET, this)
@@ -131,19 +134,19 @@ class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner, TransferLi
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         val types = applicationContext.resources.getStringArray(R.array.stageType)
-        binding.viewModel?.type = types[p2]
+        binding?.viewModel?.type = types[p2]
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
-        binding.viewModel?.type = null
+        binding?.viewModel?.type = null
     }
 
     override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
-        binding.viewModel?.rate = Math.round(p1)
+        binding?.viewModel?.rate = Math.round(p1)
     }
 
     override fun onAddresses(addresses: List<Address>) {
-        binding.viewModel?.address?.set(addresses[0].getAddressLine(0))
+        binding?.viewModel?.address?.set(addresses[0].getAddressLine(0))
     }
 
     override fun onNoAddressFound(e: Throwable) {
@@ -151,12 +154,14 @@ class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner, TransferLi
     }
 
     override fun onProgressChanged(id: Int, bytesCurrent: Long, bytesTotal: Long) {
-
+        binding?.viewModel?.progress!!.set(Convert.safeLongToInt(bytesCurrent * 100 / bytesTotal))
     }
+
+
 
     override fun onStateChanged(id: Int, state: TransferState?) {
         if (state == TransferState.COMPLETED && tempPictureFile != null) {
-            binding.viewModel?.setPicture(tempPictureFile!!.name)
+            binding?.viewModel?.setPicture(tempPictureFile!!.name)
             tempPictureFile!!.delete()
         }
     }
@@ -166,16 +171,16 @@ class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner, TransferLi
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-        binding.viewModel?.saveState()
+        binding?.viewModel?.saveState()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-        binding.viewModel?.restoreState()
+        binding?.viewModel?.restoreState()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        binding.viewModel?.dispose()
+        binding?.viewModel?.dispose()
     }
 }
