@@ -64,6 +64,8 @@ class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner, TransferLi
             val content = this.findViewById<View>(android.R.id.content)
             content.setupSnackBar(this, binding!!.viewModel?.snackBarMessage, Snackbar.LENGTH_LONG)
             content.setupSnackBarRes(this, binding!!.viewModel?.snackBarMessageRes, Snackbar.LENGTH_LONG)
+        } else {
+            binding?.viewModel?.restoreState()
         }
     }
 
@@ -172,11 +174,6 @@ class StageCreationActivity : BaseActivity(), LifecycleRegistryOwner, TransferLi
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
         binding?.viewModel?.saveState()
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        super.onRestoreInstanceState(savedInstanceState)
-        binding?.viewModel?.restoreState()
     }
 
     override fun onDestroy() {

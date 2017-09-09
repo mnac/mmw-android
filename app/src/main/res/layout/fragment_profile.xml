@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="handler"
+            type="com.mmw.activity.home.profile.ProfileFragment" />
+
+        <variable
+            name="viewModel"
+            type="com.mmw.activity.home.profile.ProfileViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
+
+            <ImageView
+                android:id="@+id/profileImageVw"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/profileImageVwDescription"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:profileImageUrl="@{viewModel.picturePath}" />
+
+            <ImageButton
+                android:id="@+id/settingsImageBtn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/settingsImageVwDescription"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_settings_24dp"
+                android:onClick="@{handler::onClickSettings}"
+                app:layout_constraintBottom_toBottomOf="@+id/lastNameTxtVw"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/firstNameTxtVw" />
+
+            <TextView
+                android:id="@+id/firstNameTxtVw"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:text="@={viewModel.firstName}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toTopOf="@+id/lastNameTxtVw"
+                app:layout_constraintEnd_toStartOf="@+id/settingsImageBtn"
+                app:layout_constraintStart_toEndOf="@+id/profileImageVw"
+                app:layout_constraintTop_toTopOf="@+id/profileImageVw" />
+
+            <TextView
+                android:id="@+id/lastNameTxtVw"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:text="@={viewModel.lastName}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toBottomOf="@+id/profileImageVw"
+                app:layout_constraintEnd_toStartOf="@+id/settingsImageBtn"
+                app:layout_constraintStart_toEndOf="@+id/profileImageVw"
+                app:layout_constraintTop_toBottomOf="@+id/firstNameTxtVw" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/tripsRecyclerVw"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileImageVw"
+                app:layout_constraintVertical_bias="0.5"
+                bind:trips="@{viewModel.trips}"
+                tools:layout_editor_absoluteX="0dp" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

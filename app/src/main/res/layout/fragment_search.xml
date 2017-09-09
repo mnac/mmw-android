@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mmw.activity.home.search.SearchViewModel" />
+
+    </data>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:refreshing="@{viewModel.dataLoading}"
+        app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+        tools:context="com.mmw.activity.home.search.SearchFragment">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/tripsRecyclerVw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            bind:trips="@{viewModel.trips}" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</layout>
