@@ -30,7 +30,9 @@ class TripDetailViewModel(context: Application, private var userId: String?, pri
 
     private var owner: Boolean = false
     private var follow: Boolean = false
-    var fabSrc: ObservableInt = ObservableInt(R.drawable.ic_not_following_24dp)
+    var fabSrc: ObservableInt = ObservableInt(0)
+
+    var mapAvailable: ObservableBoolean = ObservableBoolean(false)
 
     fun loadTrip(trip: Trip?) {
         if (trip?.id != null) {
@@ -42,6 +44,11 @@ class TripDetailViewModel(context: Application, private var userId: String?, pri
         if (trip != null && trip!!.id != null) {
             loadTrip(false, this.trip!!.id!!)
         }
+    }
+
+    fun getStages(): ArrayList<Stage>? {
+        return if (trip != null) trip?.stages
+        else ArrayList()
     }
 
     fun loadTrip(isRefresh: Boolean, tripId: String) {

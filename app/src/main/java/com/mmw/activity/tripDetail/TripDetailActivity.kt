@@ -9,6 +9,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.SupportMapFragment
+import com.mmw.MapsActivity
 import com.mmw.R
 import com.mmw.activity.BaseActivity
 import com.mmw.activity.stageCreation.StageCreationActivity
@@ -22,6 +25,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
 class TripDetailActivity : BaseActivity() {
+
     companion object {
         val TRIP_KEY = "trip_key"
         val TRIP_ID_KEY = "trip_id_key"
@@ -29,6 +33,9 @@ class TripDetailActivity : BaseActivity() {
 
     private lateinit var binding: ActivityTripDetailBinding
     private lateinit var stagesAdapter: StagesAdapter
+
+    private var mMapFragment: SupportMapFragment? = null
+    private var mMap: GoogleMap? = null
 
     private val disposable = CompositeDisposable()
 
@@ -99,6 +106,11 @@ class TripDetailActivity : BaseActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    fun onClickMap(@Suppress("UNUSED_PARAMETER") view: View) {
+        val intent = Intent(this, MapsActivity::class.java)
+        intent.putExtra(MapsActivity.STAGES_INTENT_KEY, binding.viewModel!!.getStages())
+        startActivity(intent)
+    }
 
     fun onClickFAB(@Suppress("UNUSED_PARAMETER") view: View) {
         if (binding.viewModel?.isOwner()!!) {

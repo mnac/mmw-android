@@ -18,6 +18,7 @@
     </data>
 
     <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLyt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.mmw.activity.tripDetail.TripDetailActivity">
@@ -37,14 +38,6 @@
                 app:expandedTitleTextAppearance="@style/ExpandedTxtAppearance"
                 app:collapsedTitleTextAppearance="@style/ExpandedTxtAppearance"
                 android:fitsSystemWindows="true">
-
-                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/map"
-                    tools:context=".MapsActivity"
-                    android:name="com.google.android.gms.maps.SupportMapFragment" />
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -89,6 +82,17 @@
             android:focusable="true"
             android:onClick="@{handlers::onClickFAB}"
             bind:src="@{viewModel.fabSrc}"
+            app:layout_anchor="@id/appBarLayout"
+            app:layout_anchorGravity="bottom|right|end" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="72dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{handlers::onClickMap}"
+            android:src="@drawable/ic_map_24dp"
             app:layout_anchor="@id/appBarLayout"
             app:layout_anchorGravity="bottom|right|end" />
 

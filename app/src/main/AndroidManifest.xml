@@ -7,6 +7,13 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -18,10 +25,9 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_following_24dp" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY"/>
+            android:value="@string/google_map_api" />
         <!--
              Set color used with incoming notification messages. This is used when no color is set for the incoming
              notification message. See README(https://goo.gl/6BKBk7) for more.
@@ -72,8 +78,8 @@
             android:name=".activity.pictureSwipe.PictureSwipeActivity"
             android:label="@string/title_activity_picture_swipe"
             android:theme="@style/AppThemeNoActionBar" />
-
-        <activity android:name=".activity.userUpdate.UpdateActivity"
+        <activity
+            android:name=".activity.userUpdate.UpdateActivity"
             android:label="@string/title_activity_stage_creation"
             android:theme="@style/AppTheme" />
 
@@ -95,6 +101,9 @@
             </intent-filter>
         </service>
 
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>
