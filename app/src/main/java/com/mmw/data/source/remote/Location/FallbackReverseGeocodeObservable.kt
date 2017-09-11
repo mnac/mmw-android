@@ -42,7 +42,7 @@ abstract class FallbackReverseGeocodeObservable(protected var locale: Locale,
 
             val reader = BufferedReader(InputStreamReader(urlConnection.inputStream, "UTF-8"))
 
-            var line: String
+            var line: String?
             var next = true
             while (next) {
                 line = reader.readLine()

@@ -43,9 +43,11 @@ fun loadImage(view: ImageView, url: String?) {
 @BindingAdapter("bind:profileImageUrl")
 fun loadProfileImage(view: ImageView, url: String?) {
     if (url != null && !url.isEmpty()) {
-        Picasso.with(view.context).load(url).placeholder(R.drawable.ic_account_box_80dp).fit().centerCrop().into(view)
+        Picasso.with(view.context).load(url)
+                .placeholder(R.drawable.ic_account_box_80dp).fit().centerCrop().into(view)
     } else {
-        Picasso.with(view.context).load(R.drawable.ic_account_box_80dp).placeholder(R.drawable.ic_account_box_80dp).fit().centerCrop().into(view)
+        Picasso.with(view.context).load(R.drawable.ic_account_box_80dp)
+                .placeholder(R.drawable.ic_account_box_80dp).fit().centerCrop().into(view)
     }
 }
 

@@ -80,7 +80,7 @@
             android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".activity.userUpdate.UpdateActivity"
-            android:label="@string/title_activity_stage_creation"
+            android:label="@string/title_activity_user_update"
             android:theme="@style/AppTheme" />
 
         <service
